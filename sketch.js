@@ -22,7 +22,7 @@ let fantasy = [{
 }, {
   name: "Orik",
   species: "a Dwarf",
-  age: "100+",
+  age: "100",
   occupation: "the Ruler of the Dwarven Kingdom"
 }, {
   name: "Roran",
@@ -41,22 +41,40 @@ let fantasy = [{
   occupation: "a Dark Magician"
 }, {
   name: "Nar Garzvhog",
-  species: "an Urgal (Kull)",
+  species: "an Urgal",
   age: "unknown",
-  occupation: "an Urgal Warchief (Nar)"
+  occupation: "an Urgal Warchief"
 }];
 
 let nameIndex;
 let speciesIndex;
 let ageIndex;
 let occupationIndex;
+let cnv;
+let button;
 
 function setup() {
-  createCanvas(600, 600);
-  textSize(25);
+  cnv = createCanvas(windowWidth, 600);
+  cnv.parent('#canvasDiv');
 
-  background(220);
-  text("click to generate your character!", 50, 100);
+  textSize(20);
+  textAlign(CENTER);
+  textFont('Amaranth');
+
+  background(random(100, 255), random(100, 255), random(100, 255));
+  text("Life can be pretty random.", width/2, 100);
+  text("As you click to generate your character,", width/2, 135);
+  text("think about how that person came to", width/2, 170);
+  text("join their occupation.", width/2, 205);
+  text("What circumstances and world events allowed it?", width/2, 240);
+  text("Real life is much like this randomizer.", width/2, 300);
+  text("What random events led to where you are today?", width/2, 335);
+
+  button = createButton('Create your Character!');
+  button.position(width/2 - button.width/2, 650);
+  button.mousePressed(buttonPressed);
+  button.class("randomizerButton");
+
 }
 
 function draw() {
@@ -76,16 +94,19 @@ function loadingDot2() {
 }
 
 function randomizer() {
-  background(220);
+  background(random(100, 255), random(100, 255), random(100, 255));
   nameIndex = int(random(fantasy.length));
   speciesIndex = int(random(fantasy.length));
   ageIndex = int(random(fantasy.length));
   occupationIndex = int(random(fantasy.length));
 
-  text("Your name is " + fantasy[nameIndex].name + ".", 50, 100);
-  text("You are " + fantasy[speciesIndex].species, 50, 135);
-  text("and you are " + fantasy[ageIndex].age + " years old.", 50, 170);
-  text("You are " + fantasy[occupationIndex].occupation + ".", 50, 205);
+  text("Your name is " + fantasy[nameIndex].name + ".", width/2, 100);
+  text("You are " + fantasy[speciesIndex].species, width/2, 135);
+  text("and you are " + fantasy[ageIndex].age + " years old.", width/2, 170);
+  text("You are " + fantasy[occupationIndex].occupation + ".", width/2, 205);
+  text("Story Time!", width/2, 300);
+  text("How did " + fantasy[speciesIndex].species + " who is " + fantasy[ageIndex].age + " years old", width/2, 335);
+  text("become " + fantasy[occupationIndex].occupation + "?", width/2, 370);
 }
 
 function loadAnimation() {
@@ -95,8 +116,8 @@ function loadAnimation() {
 
 }
 
-function mousePressed() {
-  background(220);
+function buttonPressed() {
+  background(random(100, 255), random(100, 255), random(100, 255));
   setTimeout(randomizer, 750);
   loadAnimation();
 }
